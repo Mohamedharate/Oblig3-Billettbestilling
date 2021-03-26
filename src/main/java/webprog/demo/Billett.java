@@ -2,6 +2,7 @@ package webprog.demo;
 
 public class Billett {
 
+
     private String film;
     private String fornavn;
     private String etternavn;
@@ -43,6 +44,7 @@ public class Billett {
         this.antall = antall;
     }
 
+
     public String getFilm() {
         return film;
     }
@@ -66,4 +68,5 @@ public class Billett {
     public String getAntall() {
         return antall;
     }
+
 }
