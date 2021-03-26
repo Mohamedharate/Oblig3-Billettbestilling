@@ -74,7 +74,6 @@ function regBillett(){
         mail.val("");
 
     }
-
 }
 
 function hentAlle(){
@@ -82,7 +81,6 @@ function hentAlle(){
         formaterData(data)
     })
 }
-
 
 function formaterData(billetter){
     let ut = "\n<table class='table table-striped table-bordered'><tr><th>Film</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnummer</th><th>Epost</th></tr>";
