@@ -65,13 +65,15 @@ function regBillett(){
         $.post("/lagre", billett, function (){
             hentAlle();
         })
-
+/*
         film.val("");
         antall.val("");
         fornavn.val("");
         etternavn.val("");
         telefonnr.val("");
         mail.val("");
+
+ */
 
     }
 }
