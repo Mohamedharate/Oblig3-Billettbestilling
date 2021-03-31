@@ -14,7 +14,7 @@ public class Controller {
     private BillettRepository rep;
 
     @PostMapping("/lagre")
-    public void lagreBillett(Billett billett){
+    public void lagre(Billett billett){
         rep.lagreBillett(billett);
     }
 
@@ -27,5 +27,4 @@ public class Controller {
     public void slettAlle(){
         rep.slettAlleBilletter();
     }
-
 }

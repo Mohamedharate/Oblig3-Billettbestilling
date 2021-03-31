@@ -12,35 +12,25 @@
                     event.preventDefault()
                     event.stopPropagation()
                 }
-
                 form.classList.add('was-validated')
             }, false)
         })
 })()
 
-
 function regBillett(){
 
-
-    const film = $("#film");
     const fornavn = $("#inpFornavn");
     const etternavn = $("#inpEtternavn");
+    const film = $("#film");
     const telefonnr = $("#inpTelefonnr");
     const mail = $("#inpEpost");
     const antall = $("#inpAntall");
-    const mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
-
 
     let feil = false;
-
-    if (antall.val() === "" || antall.val() <= 0){
-        feil = true;
-    }
 
     if (fornavn.val() === ""){
         feil = true;
     }
-
     if(etternavn.val() === ""){
         feil = true;
     }
@@ -50,41 +40,41 @@ function regBillett(){
     if (mail.val() === ""){
         feil = true;
     }
+    if (antall.val() === "" || antall.val() <= 0){
+        feil = true;
+    }
 
-//|| !mail.val().match(mailformat)
     if (!feil){
         const billett = {
-            film: film.val(),
             fornavn : fornavn.val(),
             etternavn : etternavn.val(),
+            film: film.val(),
             telefonnr : telefonnr.val(),
             mail : mail.val(),
             antall : antall.val()
         }
 
-        $.post("/lagre", billett, function (){
-            hentAlle();
-        })
-/*
+        $.post("/lagre",billett, function() {
+            hent();
+        });
+
         film.val("");
         antall.val("");
         fornavn.val("");
         etternavn.val("");
         telefonnr.val("");
         mail.val("");
-
- */
-
     }
 }
 
-function hentAlle(){
+function hent(){
     $.get("/hentAlle", function (data){
-        formaterData(data)
-    })
+        formaterData(data);
+    });
 }
 
 function formaterData(billetter){
+
     let ut = "\n<table class='table table-striped table-bordered'><tr><th>Film</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnummer</th><th>Epost</th></tr>";
     for (const billett of billetter){
         ut += "<tr><td>"+billett.film+"</td><td>"+billett.antall+"</td><td>"+billett.fornavn+"</td><td>"+billett.etternavn+"</td>" +
@@ -96,6 +86,6 @@ function formaterData(billetter){
 
 function slettBilletter(){
     $.get("/slettAlle", function (){
-        hentAlle();
+        hent();
     });
 }
