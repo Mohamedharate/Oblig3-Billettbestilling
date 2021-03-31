@@ -12,10 +12,12 @@
                     event.preventDefault()
                     event.stopPropagation()
                 }
+
                 form.classList.add('was-validated')
             }, false)
         })
 })()
+
 
 function regBillett(){
 
@@ -55,21 +57,21 @@ function regBillett(){
         }
 
         $.post("/lagre",billett, function() {
-            hent();
+            hentAlle();
         });
-
-        film.val("");
-        antall.val("");
-        fornavn.val("");
-        etternavn.val("");
-        telefonnr.val("");
-        mail.val("");
     }
+
+    film.val("");
+    antall.val("");
+    fornavn.val("");
+    etternavn.val("");
+    telefonnr.val("");
+    mail.val("");
 }
 
-function hent(){
-    $.get("/hentAlle", function (data){
-        formaterData(data);
+function slettBilletter(){
+    $.get("/slettAlle", function (){
+        hentAlle();
     });
 }
 
@@ -81,11 +83,12 @@ function formaterData(billetter){
             "<td>"+billett.telefonnr+"</td><td>"+billett.mail+"</td></tr>";
     }
     ut += "</table>"
+
     $("#billettene").html(ut);
 }
 
-function slettBilletter(){
-    $.get("/slettAlle", function (){
-        hent();
+function hentAlle(){
+    $.get("/hentAlle", function (data){
+        formaterData(data);
     });
 }
